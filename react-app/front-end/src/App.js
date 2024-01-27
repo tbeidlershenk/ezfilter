@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [first, setFirst] = useState(true);
-  const [second, setSecond] = useState(true);
+  const [second, setSecond] = useState(false);
 
   useEffect(() => {
     fetch('/time').then(res => res.json()).then(data => {
