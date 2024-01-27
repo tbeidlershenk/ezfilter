@@ -1,3 +1,4 @@
+
 // TODO(developer): Set to client ID and API key from the Developer Console
 const CLIENT_ID =
   "1088400508244-1943m2vkp0h1ohupsedpn480utim5d67.apps.googleusercontent.com";
@@ -70,7 +71,7 @@ function handleAuthClick() {
     }
     document.getElementById("signout_button").style.visibility = "visible";
     document.getElementById("authorize_button").innerText = "Refresh";
-    await listLabels();
+    await syncFiltersWithGmail(gapi.client);
   };
 
   if (gapi.client.getToken() === null) {
@@ -124,6 +125,20 @@ async function listLabels() {
   );
   document.getElementById("content").innerText = output;
 }
+
+async function getFiltersFromFirebase() {
+  await fetch("/filters").then((res) => {
+    return res.json();
+  });
+}
+
+async function syncFiltersWithGmail(client) {
+    console.log("here");
+    await fetch("/sync").then((res) => {
+      return res.json();
+    });
+  }
+  
 
 // stuff for UI
 
