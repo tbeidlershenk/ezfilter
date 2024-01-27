@@ -155,7 +155,7 @@ const people = [
   { name: 'yadri'},
   { name: 'zack'},
 ]
-const searchInput = document.querySelector('.input');
+const searchInput = document.querySelector('input');
 searchInput.addEventListener("input", (e) => {
   // inside, we will need to achieve a few things:
   // 1. declare and assign the value of the event's target to a variable AKA whatever is typed in the search bar
@@ -219,5 +219,4 @@ function setList(results){
     if (results.length === 0 ){
         noResults()
     }
-
 }
