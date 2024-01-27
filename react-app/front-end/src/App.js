@@ -34,10 +34,10 @@ function App() {
 
         <p>The current time is {currentTime}.</p>
       </header> */}
-      <label>Search </label>
-      <input type="text" onChange={e => setQuery(e.target.value)}/>
+      <label class="dynamic"> Search </label>
+      <input class="dynamic" type="text" onChange={e => setQuery(e.target.value)}/>
       <ul>
-      {filteredItems.map(value => <h2 key={value.name}><input type="checkbox" onChange={()=> handleChange(value.name)}/>{value.name}</h2>)}
+      {filteredItems.map(value => <h3 key={value.name}><input type="checkbox" onChange={()=> handleChange(value.name)}/>{value.name}</h3>)}
       </ul>
       <div>EzFilter
         {/* header - textbox w search functionality */}
