@@ -13,6 +13,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start_backend_windows": "cd ../back-end && venv/Scripts/flask run --no-debugger",
+    "start_backend_mac": "cd ../back-end && venv/bin/flask run --no-debugger",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -34,5 +36,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://127.0.0.1:5000"
 }
