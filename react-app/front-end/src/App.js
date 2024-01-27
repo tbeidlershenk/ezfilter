@@ -10,12 +10,15 @@ import {
   IOAuthState,
 } from "react-google-oauth2";
 import THANK_U_NEXT from "./THANK_U_NEXT";
+import db from "./firebase"
+import { onSnapshot, collection } from 'firebase/firestore';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [first, setFirst] = useState(true);
   const [second, setSecond] = useState(false);
   const [query, setQuery] = useState("");
+  const [firebaseData, setFirebaseData] = useState([]);
   const { tracks } = THANK_U_NEXT;
   const { items } = tracks;
   const getFilteredItems = (query, items) => {
@@ -25,19 +28,26 @@ function App() {
     return items.filter((song) => song.name.includes(query));
   };
   const filteredItems = getFilteredItems(query, items);
-  useEffect(() => {
-    fetch("/time")
-      .then((res) => res.json())
-      .then((data) => {
-        setCurrentTime(data.time);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("/time")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setCurrentTime(data.time);
+  //     });
+  // }, []);
 
+  useEffect(() => {
+    // Firebase subscription using onSnapshot
+    const unsubscribe = onSnapshot(collection(db, "colors"), (snapshot) => {
+      const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setFirebaseData(data);
+    });
+
+    // Cleanup function to unsubscribe when the component unmounts
+    return () => unsubscribe();
+  }, []);
   const handleChange = (data) => {
     console.log(data);
-    {
-      /* this just prints what box they checked into the console*/
-    }
   };
   const options = {
     // clientId: (process.env.CLIENT_ID),
@@ -56,9 +66,9 @@ function App() {
 
         <p>The current time is {currentTime}.</p>
       </header> */}
-      <label class="dynamic"> Search </label>
+      <label className="dynamic"> Search </label>
       <input
-        class="dynamic"
+        className="dynamic"
         type="text"
         onChange={(e) => setQuery(e.target.value)}
       />
