@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import THANK_U_NEXT from './THANK_U_NEXT';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [first, setFirst] = useState(true);
   const [second, setSecond] = useState(false);
-
+  const [query, setQuery] = useState("");
+  const {tracks} = THANK_U_NEXT;
+  const {items} = tracks;
+  const getFilteredItems = (query, items) => {
+    if(!query){
+        return items;
+    }
+    return items.filter(song => song.name.includes(query))
+  }
+  const filteredItems = getFilteredItems(query, items);
   useEffect(() => {
     fetch('/time').then(res => res.json()).then(data => {
       setCurrentTime(data.time);
@@ -25,13 +34,15 @@ function App() {
 
         <p>The current time is {currentTime}.</p>
       </header> */}
+      <label>Search </label>
+      <input type="text" onChange={e => setQuery(e.target.value)}/>
+      <ul>
+      {filteredItems.map(value => <h2 key={value.name}><input type="checkbox" onChange={()=> handleChange(value.name)}/>{value.name}</h2>)}
+      </ul>
       <div>EzFilter
         {/* header - textbox w search functionality */}
         {/* filter options */}
-        <input type="checkbox" value={first} onChange={()=> handleChange("first")}/> First
-        <input type="checkbox" value={second} onChange={()=> handleChange("second")}/> Second
-
-        </div>
+      </div>
     </div>
 
     
