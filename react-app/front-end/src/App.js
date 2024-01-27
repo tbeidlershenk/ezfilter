@@ -4,6 +4,8 @@ import './App.css';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(0);
+  const [first, setFirst] = useState(true);
+  const [second, setSecond] = useState(true);
 
   useEffect(() => {
     fetch('/time').then(res => res.json()).then(data => {
@@ -19,7 +21,16 @@ function App() {
 
         <p>The current time is {currentTime}.</p>
       </header>
+      <div>EzFilter
+        {/* header - textbox w search functionality */}
+        {/* filter options */}
+        <input type="checkbox" value={first} onChange={()=> handleChange("first")}/> First
+        <input type="checkbox" value={second} onChange={()=> handleChange("second")}/> Second
+
+        </div>
     </div>
+
+    
   );
 }
 
