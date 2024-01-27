@@ -13,14 +13,18 @@ function App() {
     });
   }, []);
 
+    const handleChange=(data)=>{
+        console.log(data); {/* this just prints what box they checked into the console*/}
+    }
+
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
 
         ... no changes in this part ...
 
         <p>The current time is {currentTime}.</p>
-      </header>
+      </header> */}
       <div>EzFilter
         {/* header - textbox w search functionality */}
         {/* filter options */}
