@@ -15,9 +15,9 @@ def get_current_time():
 @app.route('/filters')
 def get_filters_from_firebase():
     print("Filter")
-    print(request.data)
+    print(request)
 
 @app.route('/sync')
 def sync_filters_with_gmail():
     print("Sync")
-    print(request.data)
+    print(request)
