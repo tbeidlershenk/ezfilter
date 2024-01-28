@@ -11,6 +11,7 @@ body{
     border-radius: 50px;
     position: relative;
     margin: auto;
+    margin-top: 75px;
   }
   
   .searchButton {
@@ -52,7 +53,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #40B3A2;
+    background: #af6add;
     min-width: 200px;
     border: 0;
     border-radius: 4px;

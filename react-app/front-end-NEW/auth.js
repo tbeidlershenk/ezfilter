@@ -85,20 +85,6 @@ function handleAuthClick() {
 }
 
 /**
- *  Sign out the user upon button click.
- */
-function handleSignoutClick() {
-  const token = gapi.client.getToken();
-  if (token !== null) {
-    google.accounts.oauth2.revoke(token.access_token);
-    gapi.client.setToken("");
-    document.getElementById("content").innerText = "";
-    document.getElementById("authorize_button").innerText = "Authorize";
-    document.getElementById("signout_button").style.visibility = "hidden";
-  }
-}
-
-/**
  * Print all Labels in the authorized user's inbox. If no labels
  * are found an appropriate message is printed.
  */

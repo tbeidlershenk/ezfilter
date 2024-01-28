@@ -6,9 +6,7 @@
     <link rel="stylesheet" type="text/css" href="index.css" />
   </head>
   <body>
-    <p>Gmail API Quickstart</p>
     <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize_button" onclick="handleAuthClick()">Submit</button>
     <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
     <pre id="content" style="white-space: pre-wrap;"></pre>
     <div class="form-container">
@@ -49,14 +47,13 @@
       </form>
 
     </div>
-
     <div class="results-container">
     <ul class="results-list" id="list">
 
     </ul>
     </div>
     <div>
-      <button class="btn"><i class="animation"></i>BUTTON<i class="animation"></i>
+      <button class="btn" id="authorize_button" onclick="handleAuthClick()"><i class="animation"></i>SUBMIT<i class="animation"></i>
       </button>
     </div>
     <script src="./auth.js"></script>
