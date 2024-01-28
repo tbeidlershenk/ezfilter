@@ -25,3 +25,5 @@ yarn-error.log*
 # ignore cached and environment files
 __pycache__/
 venv/
+
+*token.json

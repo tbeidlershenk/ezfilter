@@ -74,10 +74,3 @@ def add_all_filters(creds, filters: []):
         if created_filter:
             print("created filter")
 
-creds = load_credentials_from_file()
-# print(get_labels(creds))
-filter = Filter()
-filter.query = "test2"
-filter.from_user = "your momma 2"
-filter.label = "testing"
-add_all_filters(creds, filters= [filter])

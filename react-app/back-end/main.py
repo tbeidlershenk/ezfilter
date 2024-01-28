@@ -1,6 +1,15 @@
 import tkinter as tk
+from filter import Filter
+from api_calls import load_credentials_from_file, add_all_filters
 
 class SimpleGUI:
+    filters = [
+        Filter(query="Job OR thank you for your interest OR thank you for applying OR", label='TRASH'),
+        Filter(query="Facebook OR Instagram OR Snapchat OR LinkedIn", label="Social Media"),
+        Filter(query="(application OR applying OR update) AND (\"thank you for your interest\" OR \"after careful review\" OR \"after reviewing\" OR \"has been filled\" OR \"while we were impressed\" OR \"after reviewing your application\" OR \"after careful consideration\" OR \"at this time, we have decided\" OR \"proceed with other candidates\" OR \"unfortunately, we have decided\" OR \"other candidates at this time\")",
+               label="Application Updates")
+    ]
+
     def __init__(self, master):
         self.master = master
         master.title("EzFilter")
@@ -23,8 +32,10 @@ class SimpleGUI:
 
         self.checkbox_vars = []
         self.checkboxes = []
-        self.all_options = ['Newsletters', 'College Emails', 'Jobs', 'Verification Emails', 'Venmo Receipts',
-                            'Uber Receipts', 'LinkedIn Jobs', 'Social Media']
+        self.all_options = []
+        for filter in self.filters:
+            self.all_options.append(filter.label)
+
         for i, option in enumerate(self.all_options):
             var = tk.StringVar(value='0')  # Initially set all checkboxes to unselected
             checkbox = tk.Checkbutton(self.checkboxes_frame, text=option, variable=var)
@@ -64,7 +75,14 @@ class SimpleGUI:
             option for var, option, checkbox in zip(self.checkbox_vars, self.all_options, self.checkboxes)
             if var.get() == '1'
         ]
+        selected_filters = []
+        for option in selected_options:
+            for filter in self.filters:
+                if filter.label == option:
+                    selected_filters.append(filter)
 
+        creds = load_credentials_from_file()
+        add_all_filters(creds, selected_filters)
         print(f'Submitting selected options: {selected_options}')
 
 if __name__ == "__main__":
