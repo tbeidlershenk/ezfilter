@@ -17,7 +17,6 @@ let gapiInited = false;
 let gisInited = false;
 
 document.getElementById("authorize_button").style.visibility = "hidden";
-document.getElementById("signout_button").style.visibility = "hidden";
 
 /**
  * Callback after api.js is loaded.
@@ -126,36 +125,20 @@ async function syncFiltersWithGmail(client) {
   }
   
 
-// stuff for UI
 
+// stuff for UI
 const people = [
-  { name: 'adri'},
-  { name: 'becky'},
-  { name: 'chris'},
-  { name: 'dillon'},
-  { name: 'evan'},
-  { name: 'frank'},
-  { name: 'georgette'},
-  { name: 'hugh'},
-  { name: 'igor'},
-  { name: 'jacoby'},
-  { name: 'kristina'},
-  { name: 'lemony'},
-  { name: 'matilda'},
-  { name: 'nile'},
-  { name: 'ophelia'},
-  { name: 'patrick'},
-  { name: 'quincy'},
-  { name: 'roslyn'},
-  { name: 'solene'},
-  { name: 'timothy'},
-  { name: 'uff'},
-  { name: 'violet'},
-  { name: 'wyatt'},
-  { name: 'x'},
-  { name: 'yadri'},
-  { name: 'zack'},
+  { name: 'Newletters'},
+  { name: 'College Emails'},
+  { name: 'Jobs'},
+  { name: 'Verification Emails'},
+  { name: 'Venmo Receipts'},
+  { name: 'Uber Receipts'},
+  { name: 'LinkedIn Jobs'},
+  { name: 'Social Media'},
 ]
+
+// filters the differents things based on what was typed
 const searchInput = document.querySelector('input');
 searchInput.addEventListener("input", (e) => {
   // inside, we will need to achieve a few things:
@@ -178,6 +161,15 @@ searchInput.addEventListener("input", (e) => {
 
   }
 
+});
+let checkedValues = [];
+
+function displayAllPeople() {
+  setList(people);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  displayAllPeople();
 });
 
 function noResults(){
@@ -208,16 +200,48 @@ function clearList(){
 }
 
 function setList(results){
-  clearList()
-    for (const person of results){
-        const resultItem = document.createElement('li')
-        resultItem.classList.add('result-item')
-        const text = document.createTextNode(person.name)
-        resultItem.appendChild(text)
-        list.appendChild(resultItem)
-    }
+  clearList();
+  checkedValues = []; // Clear the array when resetting the list
+  for (const person of results) {
+    const resultItem = document.createElement('li');
+    resultItem.classList.add('result-item');
 
-    if (results.length === 0 ){
-        noResults()
-    }
+    const container = document.createElement('label');
+    container.classList.add('container');
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.name = 'personCheckbox';
+    checkbox.value = person.name;
+
+    // Add an event listener to the checkbox
+    checkbox.addEventListener('change', function () {
+      if (this.checked) {
+        checkedValues.push(this.value);
+      } else {
+        const index = checkedValues.indexOf(this.value);
+        if (index !== -1) {
+          checkedValues.splice(index, 1);
+        }
+      }
+      console.log('Checked values:', checkedValues);
+    });
+
+    const checkmark = document.createElement('span');
+    checkmark.classList.add('checkmark');
+
+    container.appendChild(checkbox);
+    container.appendChild(checkmark);
+
+    const text = document.createTextNode(person.name);
+
+    resultItem.appendChild(container);
+    resultItem.appendChild(text);
+
+    list.appendChild(resultItem);
+  }
+
+  if (results.length === 0) {
+    noResults();
+  }
 }
