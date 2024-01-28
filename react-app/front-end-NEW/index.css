@@ -68,6 +68,8 @@ body{
     overflow: hidden;
     cursor: pointer;
     margin: auto;
+    position: absolute;
+    bottom: 0;
   }
   
   .btn:hover {
