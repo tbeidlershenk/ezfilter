@@ -1,12 +1,16 @@
+body{
+    background: var(--gradient-2, linear-gradient(90deg, #2AF598 0%, #009EFD 100%));
+}
 .searchBox {
     display: flex;
-    max-width: 230px;
+    max-width: 700px;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
     background: #2f3640;
     border-radius: 50px;
     position: relative;
+    margin: auto;
   }
   
   .searchButton {
@@ -41,6 +45,47 @@
     color: white;
     font-size: 15px;
     padding: 24px 46px 24px 26px;
+  }
+
+  .btn {
+    outline: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #40B3A2;
+    min-width: 200px;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    padding: 16px 20px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    overflow: hidden;
+    cursor: pointer;
+    margin: auto;
+  }
+  
+  .btn:hover {
+    opacity: .95;
+  }
+  
+  .btn .animation {
+    border-radius: 100%;
+    animation: ripple 0.6s linear infinite;
+  }
+  
+  @keyframes ripple {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1), 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1);
+    }
+  
+    100% {
+      box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1), 0 0 0 80px rgba(255, 255, 255, 0);
+    }
   }
   
   
