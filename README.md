@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.png" style="width:60%;"/>
+</p>
+
 ### Inspiration
 Our inspiration was as students we get a ton of emails. However, while we are technically savvy, a lot of us are too often busy to bother fidgeting around in the settings.
 
